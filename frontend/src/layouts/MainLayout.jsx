@@ -3,15 +3,15 @@ import Navbar from "../components/Navbar";
 
 const MainLayout = ({ children }) => {
   return (
-    <div className="flex">
+    <div className="min-h-screen bg-gray-100 lg:flex">
       <Sidebar />
 
-      <div className="ml-64 w-full min-h-screen">
+      <div className="min-h-screen w-full lg:ml-64">
         <Navbar />
 
-        <div className="p-6">
+        <main className="p-4 sm:p-6">
           {children}
-        </div>
+        </main>
       </div>
     </div>
   );

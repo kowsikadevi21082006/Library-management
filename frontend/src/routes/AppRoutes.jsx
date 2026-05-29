@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 
 import MainLayout from "../layouts/MainLayout";
 
@@ -19,6 +19,8 @@ const AppRoutes = () => {
           <Route path="/books" element={<Books />} />
 
           <Route path="/issuance" element={<Issuance />} />
+
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>

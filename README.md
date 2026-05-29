@@ -1,19 +1,24 @@
 # Library Management System
 
-A full-stack Library Management System built using React.js, Node.js, Express.js, PostgreSQL, and Prisma ORM.
+A full-stack Library Management System built with React.js, Node.js, Express.js, Prisma ORM, and PostgreSQL. The application helps manage library members, books, book issuance records, and pending returns through a responsive frontend connected to a deployed backend API.
 
-The application allows users to manage:
+## Deployed Links
 
-* Members
-* Books
-* Book Issuance
-* Pending Returns
+Frontend:
 
----
+```txt
+https://library-management-7x2f.vercel.app/
+```
 
-# Tech Stack
+Backend:
 
-## Frontend
+```txt
+https://library-management-2-bfke.onrender.com
+```
+
+## Tech Stack
+
+### Frontend
 
 * React.js
 * Vite
@@ -21,60 +26,63 @@ The application allows users to manage:
 * Axios
 * React Router DOM
 
-## Backend
+### Backend
 
 * Node.js
 * Express.js
 * Prisma ORM
 * PostgreSQL
 * Supabase
+* Render
 
----
+## Features
 
-# Features
+### Dashboard
 
-## Member Management
+* View total members
+* View total books
+* View total issuance records
+* View pending returns
 
-* Add Members
-* View Members
-* Update Members
+### Member Management
 
-## Book Management
+* Add members
+* View all members
+* Update member details through API
 
-* Add Books
-* View Books
-* Update Books
+### Book Management
 
-## Book Issuance
+* Add books
+* View all books
+* Update book details through API
 
-* Issue Books
-* View Issued Books
-* Mark Books as Returned
+### Book Issuance
 
-## Dashboard
+* Issue books to members
+* View issued book records
+* Display member and book names
+* Mark books as returned
+* Track pending returns
 
-* Total Members
-* Total Books
-* Total Issued Books
-* Pending Returns
+## API Security
 
----
+All backend API routes are protected using API key authentication.
 
-# API Security
-
-All APIs are protected using API Key authentication.
-
-## Required Header
+Required request header:
 
 ```txt
 x-api-key: mysecretkey
 ```
 
----
+## API Endpoints
 
-# API Endpoints
+Base backend URL:
 
-## Member APIs
+```txt
+https://library-management-2-bfke.onrender.com
+```
+
+### Member APIs
 
 ```txt
 POST   /member
@@ -83,9 +91,7 @@ GET    /member/:id
 PUT    /member/:id
 ```
 
----
-
-## Book APIs
+### Book APIs
 
 ```txt
 POST   /book
@@ -94,9 +100,7 @@ GET    /book/:id
 PUT    /book/:id
 ```
 
----
-
-## Issuance APIs
+### Issuance APIs
 
 ```txt
 POST   /issuance
@@ -104,65 +108,112 @@ GET    /issuance
 PUT    /issuance/:id
 ```
 
----
-
-# Project Structure
+## Project Structure
 
 ```txt
-library-management/
-│
-├── backend/
-│
-├── frontend/
-│
-└── README.md
+Library-management/
+|
+|-- backend/
+|   |-- prisma/
+|   |   `-- schema.prisma
+|   |-- src/
+|   |   |-- middleware/
+|   |   |-- prisma/
+|   |   |-- routes/
+|   |   `-- app.js
+|   |-- queries.sql
+|   `-- package.json
+|
+|-- frontend/
+|   |-- public/
+|   |-- src/
+|   |   |-- components/
+|   |   |-- layouts/
+|   |   |-- pages/
+|   |   |-- routes/
+|   |   |-- services/
+|   |   `-- main.jsx
+|   `-- package.json
+|
+`-- README.md
 ```
 
----
+## Backend Setup
 
-# Backend Setup
+Go to the backend folder:
 
 ```bash
 cd backend
+```
 
+Install dependencies:
+
+```bash
 npm install
+```
 
+Create a `.env` file inside the `backend` folder and add your database URL:
+
+```env
+DATABASE_URL="your_postgresql_connection_string"
+API_KEY="mysecretkey"
+```
+
+Generate Prisma client:
+
+```bash
+npx prisma generate
+```
+
+Run the backend locally:
+
+```bash
 npm run dev
 ```
 
-Backend runs on:
+Local backend URL:
 
 ```txt
 http://localhost:5000
 ```
 
----
+## Frontend Setup
 
-# Frontend Setup
+Go to the frontend folder:
 
 ```bash
 cd frontend
+```
 
+Install dependencies:
+
+```bash
 npm install
+```
 
+Run the frontend locally:
+
+```bash
 npm run dev
 ```
 
-Frontend runs on:
+Local frontend URL:
 
 ```txt
 http://localhost:5173
 ```
 
----
+## Database
 
-# Database
+The application uses PostgreSQL hosted on Supabase. Prisma ORM is used to define the database schema and communicate with the database.
 
-PostgreSQL database hosted using Supabase.
+Main database models:
 
----
+* Member
+* Book
+* Issuance
 
-# SQL Queries
+## SQL Queries
 
 The project includes SQL queries for:
 
@@ -170,26 +221,48 @@ The project includes SQL queries for:
 2. Outstanding books
 3. Top 10 most borrowed books
 
-Queries are available in:
+The queries are available in:
 
 ```txt
-queries.sql
+backend/queries.sql
 ```
 
----
+## Deployment
 
-# Sample Features Implemented
+### Backend Deployment
 
-* CRUD REST APIs
-* Database Hosting
-* Prisma ORM Integration
-* API Key Authentication
-* Responsive Frontend UI
-* Dashboard for Pending Returns
-* SQL Query Implementation
+The backend is deployed on Render:
 
----
+```txt
+https://library-management-2-bfke.onrender.com
+```
 
-# Author
+Render environment variables must include:
+
+```env
+DATABASE_URL="your_supabase_postgresql_connection_string"
+API_KEY="mysecretkey"
+```
+
+### Frontend Deployment
+
+The frontend is deployed on Vercel:
+
+```txt
+https://library-management-7x2f.vercel.app/
+```
+
+The frontend uses Axios to call the deployed Render backend with the required API key header.
+
+## How The App Works
+
+1. The user interacts with the React frontend.
+2. Axios sends requests to the deployed Express backend.
+3. The backend validates the API key.
+4. Express routes call Prisma ORM.
+5. Prisma reads/writes data in the Supabase PostgreSQL database.
+6. The frontend refreshes data and displays the updated UI.
+
+## Author
 
 Kowsika
